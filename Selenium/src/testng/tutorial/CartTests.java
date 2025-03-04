@@ -40,7 +40,7 @@ public void testRemoveProductCart() {
 	System.out.println("Validate that user is able to remove a product in the cart");
 }
 
-@Test  //--testcase5
+@Test  
 public void testRetainProductCart() {
 	System.out.println("Validate that the cart retains its last state.");
 }

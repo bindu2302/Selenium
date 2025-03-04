@@ -1,10 +1,11 @@
 package testng.tutorial2;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class CheckOutTests {
     
-	@Test
+	@AfterTest
 	public void testCheckOutCreditCard() {
 		System.out.println("Validate checkout by valid creditcard");
 	}
