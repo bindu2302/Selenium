@@ -9,65 +9,68 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GetWindowHandlesOrdered {
 
-	public static void main(String[] args) throws InterruptedException {
-		
+	public static void main(String[] args) throws InterruptedException{
 		WebDriver driver = new ChromeDriver();
-		
 		driver.manage().window().maximize();
 		driver.get("https://www.globalsqa.com/");
+		Thread.sleep(2000);
+
+		driver.findElement(By.className("header_soc_pinterest")).click();
+		System.out.println(driver.getWindowHandle());
+		Thread.sleep(2000);
 		
-		driver.findElement(By.linkText("pinterest")).click();
-		System.out.println(driver.getWindowHandles());	
-		Thread.sleep(3000);	
+		driver.findElement(By.className("header_soc_twitter")).click();
+		System.out.println(driver.getWindowHandle());
+		Thread.sleep(2000);
 		
-		driver.findElement(By.linkText("twitter")).click();
-		System.out.println(driver.getWindowHandles());	
-		Thread.sleep(3000);	
-
-
-		driver.findElement(By.linkText("linkedin")).click();
-		System.out.println(driver.getWindowHandles());	
-		Thread.sleep(3000);	
-
-
-		driver.findElement(By.linkText("google")).click();
-		System.out.println(driver.getWindowHandles());	
-		Thread.sleep(3000);	
-
-
-		driver.findElement(By.linkText("facebook")).click();
-		System.out.println(driver.getWindowHandles());	
-		Thread.sleep(3000);		
+		driver.findElement(By.className("header_soc_linkedin")).click();
+		System.out.println(driver.getWindowHandle());
+		Thread.sleep(2000);
 		
-		 Set<String> allHandles= driver.getWindowHandles();
-		 System.out.println(allHandles);
-		 
-		 System.out.println(allHandles.size());
-		 
-		 for(String handle: allHandles) {
-			 driver.switchTo().window(handle);
-			 System.out.println("Switched to url: " + driver.getCurrentUrl()+ "with handle: " + handle); 
+		driver.findElement(By.className("header_soc_google")).click();
+		System.out.println(driver.getWindowHandle());
+		Thread.sleep(2000);
 		
-		 }
-		 
-		 Iterator<String> itr = allHandles.iterator();
-		 String mainWindow = itr.next();
-		 String pinterestWindow = itr.next();
-		 String twitterWindow = itr.next();
-		 String linkedinWindow = itr.next();
-		 String googleWindow = itr.next();
-		 String facebookWindow = itr.next();
-		 
-		 System.out.println("Main window handle: " + mainWindow);
-		 System.out.println("Pinterest window handle: " + pinterestWindow);
-		 System.out.println("Twitter window handle: " + twitterWindow);
-		 System.out.println("LinkedIn window handle: " + linkedinWindow);
-		 System.out.println("google window handle: " + googleWindow);
-		 System.out.println("facebook window handle: " + facebookWindow);
-
-
-		 
-		 
+		driver.findElement(By.className("header_soc_facebook")).click();
+		System.out.println(driver.getWindowHandle());
+		Thread.sleep(2000);
+		
+		Set<String> currentHandles = driver.getWindowHandles();
+		System.out.println(currentHandles);
+		
+		Iterator<String> iterator = currentHandles.iterator();
+		
+		String mainWindow = iterator.next();
+		String pinterestHandle = iterator.next();
+		String twitterHandle = iterator.next();
+		String linkedinHandle = iterator.next();
+		String googleHandle = iterator.next();
+		String facebookHandle = iterator.next();
+		
+		System.out.println("Main window handle: " + mainWindow);
+		System.out.println("Pinterest window: " + pinterestHandle);
+		System.out.println("Twitter window: " + twitterHandle);
+		System.out.println("LinkedIn window: " + linkedinHandle);
+		System.out.println("Google window: " + googleHandle);
+		System.out.println("Facebook window: " + facebookHandle);
+		
+		driver.switchTo().window(pinterestHandle);
+		System.out.println("Pinterest page title: " + driver.getTitle());
+		
+		driver.switchTo().window(twitterHandle);
+		System.out.println("Twitter page title: " + driver.getTitle());
+		
+		driver.switchTo().window(linkedinHandle);
+		System.out.println("Linkedin page title: " + driver.getTitle());
+		
+		driver.switchTo().window(googleHandle);
+		System.out.println("Google page title: " + driver.getTitle());
+		
+		driver.switchTo().window(facebookHandle);
+		System.out.println("FaceBook page title: " + driver.getTitle());
+		
+		driver.switchTo().window(mainWindow);
+		System.out.println("Back to main window: " + driver.getTitle());
+		
 	}
-
 }
